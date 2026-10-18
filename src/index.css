@@ -1,0 +1,483 @@
+@import "tailwindcss";
+
+@theme {
+  --color-fiesta-red: #C60B1E;
+  --color-fiesta-yellow: #FFC400;
+  --color-fiesta-amber: #F59E0B;
+  --color-fiesta-navy: #1D3557;
+  --color-fiesta-teal: #2A9D8F;
+  --color-fiesta-terracotta: #E07A5F;
+  --color-fiesta-sand: #F4F1DE;
+  --color-fiesta-dark: #1A1A24;
+  --color-fiesta-card: #242436;
+  --color-fiesta-border: #3A3A52;
+  --color-sky-warm: #87CEEB;
+  --color-sky-deep: #4A90D9;
+  --color-terra-light: #F5DEB3;
+  --color-terra-warm: #DEB887;
+  --color-olive: #6B8E23;
+  --color-olive-dark: #556B2F;
+  --color-sunset-orange: #FF6B35;
+  --color-sunset-pink: #FF8C94;
+  --color-game-bg: #1B2838;
+  --color-game-panel: #2A3A50;
+  --color-game-panel-light: #3D5068;
+}
+
+/* ============================================
+   ROOT GAME VARIABLES
+   ============================================ */
+:root {
+  color-scheme: dark;
+  --game-transition: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+body {
+  background: linear-gradient(180deg, #1B2838 0%, #0F1923 100%);
+  color: #F1F5F9;
+  font-family: 'Nunito', 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #FFC400;
+  color: #1B2838;
+}
+
+/* ============================================
+   SCROLLBAR — Game Themed
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1B2838;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #E07A5F, #C60B1E);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #FFC400, #E07A5F);
+}
+
+/* ============================================
+   GAME TYPOGRAPHY
+   ============================================ */
+.font-game-title {
+  font-family: 'Nunito', system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.025em;
+}
+
+.font-game-body {
+  font-family: 'Nunito', 'Inter', system-ui, sans-serif;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 15px rgba(255, 196, 0, 0.35); }
+  50% { box-shadow: 0 0 30px rgba(255, 196, 0, 0.7); }
+}
+.glow-gold { animation: pulseGlow 2.5s infinite ease-in-out; }
+
+@keyframes pulseGlowRed {
+  0%, 100% { box-shadow: 0 0 12px rgba(198, 11, 30, 0.3); }
+  50% { box-shadow: 0 0 24px rgba(198, 11, 30, 0.6); }
+}
+.glow-red { animation: pulseGlowRed 2s infinite ease-in-out; }
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.float-animation { animation: floatGentle 3s ease-in-out infinite; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.animate-fadeIn { animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-slideUp { animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slideInLeft { animation: slideInLeft 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+.animate-slideInRight { animation: slideInRight 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.1); }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-bounceIn { animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+@keyframes starPop {
+  0% { transform: scale(0) rotate(-30deg); opacity: 0; }
+  60% { transform: scale(1.3) rotate(10deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+.animate-starPop { animation: starPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes coinSpin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+.animate-coinSpin { animation: coinSpin 0.6s ease-in-out; }
+
+@keyframes pathDraw {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes cloudDrift {
+  0% { transform: translateX(-10%); }
+  100% { transform: translateX(110%); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+.animate-twinkle { animation: twinkle 2s ease-in-out infinite; }
+
+/* ============================================
+   GAME BUTTONS
+   ============================================ */
+.btn-game {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 800;
+  font-size: 0.9rem;
+  border-radius: 1rem;
+  border: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s var(--game-transition);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.3), 0 6px 12px rgba(0,0,0,0.2);
+  position: relative;
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+.btn-game:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.25);
+}
+.btn-game:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.3), 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.btn-game-primary {
+  background: linear-gradient(180deg, #FFC400 0%, #F59E0B 100%);
+  color: #1B2838;
+  border-color: #E8A800;
+}
+.btn-game-primary:hover {
+  background: linear-gradient(180deg, #FFD233 0%, #FFC400 100%);
+}
+
+.btn-game-danger {
+  background: linear-gradient(180deg, #EF4444 0%, #C60B1E 100%);
+  color: white;
+  border-color: #991B1B;
+}
+
+.btn-game-success {
+  background: linear-gradient(180deg, #22C55E 0%, #16A34A 100%);
+  color: white;
+  border-color: #15803D;
+}
+
+.btn-game-secondary {
+  background: linear-gradient(180deg, #3D5068 0%, #2A3A50 100%);
+  color: #E2E8F0;
+  border-color: #1E293B;
+}
+
+/* ============================================
+   GAME PANELS
+   ============================================ */
+.game-panel {
+  background: linear-gradient(180deg, #2A3A50 0%, #1F2D3D 100%);
+  border: 3px solid #3D5068;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.2), 0 8px 20px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+.game-panel-header {
+  background: linear-gradient(180deg, #3D5068 0%, #2A3A50 100%);
+  padding: 0.75rem 1.25rem;
+  border-bottom: 2px solid #4A6078;
+}
+
+.game-card {
+  background: linear-gradient(135deg, #2A3A50 0%, #1F2D3D 100%);
+  border: 2px solid #3D5068;
+  border-radius: 1rem;
+  transition: all 0.2s ease;
+}
+.game-card:hover {
+  border-color: #FFC400;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 196, 0, 0.15);
+}
+
+/* ============================================
+   LEVEL NODE STYLES
+   ============================================ */
+.level-node {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.1rem;
+  border: 4px solid;
+  cursor: pointer;
+  transition: all 0.2s var(--game-transition);
+  position: relative;
+  box-shadow: 0 3px 0 rgba(0,0,0,0.3);
+}
+.level-node:hover:not(.level-locked) {
+  transform: scale(1.15) translateY(-3px);
+  box-shadow: 0 6px 0 rgba(0,0,0,0.2), 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.level-node.level-completed {
+  background: linear-gradient(135deg, #22C55E, #16A34A);
+  border-color: #86EFAC;
+  color: white;
+}
+
+.level-node.level-available {
+  background: linear-gradient(135deg, #FFC400, #F59E0B);
+  border-color: #FFE066;
+  color: #1B2838;
+  animation: pulseGlow 2.5s infinite;
+}
+
+.level-node.level-locked {
+  background: linear-gradient(135deg, #475569, #334155);
+  border-color: #64748B;
+  color: #94A3B8;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.level-node.level-perfect {
+  background: linear-gradient(135deg, #FBBF24, #F59E0B);
+  border-color: #FDE68A;
+  color: #1B2838;
+}
+
+/* ============================================
+   NPC SPEECH BUBBLES
+   ============================================ */
+.speech-bubble {
+  position: relative;
+  background: linear-gradient(135deg, #F4F1DE 0%, #FEFCE8 100%);
+  color: #1B2838;
+  border: 3px solid #E07A5F;
+  border-radius: 1.25rem;
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 24px;
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 14px solid #E07A5F;
+}
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 26px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 12px solid #FEFCE8;
+  z-index: 1;
+}
+
+/* ============================================
+   HEARTS / LIVES DISPLAY
+   ============================================ */
+.heart-full {
+  color: #EF4444;
+  filter: drop-shadow(0 0 3px rgba(239, 68, 68, 0.5));
+}
+.heart-empty {
+  color: #475569;
+}
+
+/* ============================================
+   XP BAR
+   ============================================ */
+.xp-bar-bg {
+  background: #1F2D3D;
+  border: 2px solid #3D5068;
+  border-radius: 999px;
+  height: 12px;
+  overflow: hidden;
+}
+.xp-bar-fill {
+  background: linear-gradient(90deg, #3B82F6, #8B5CF6);
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+.xp-bar-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.2) 0%, transparent 100%);
+  border-radius: 999px 999px 0 0;
+}
+
+/* ============================================
+   STAR RATINGS
+   ============================================ */
+.star-earned {
+  color: #FFC400;
+  filter: drop-shadow(0 0 4px rgba(255, 196, 0, 0.6));
+}
+.star-empty {
+  color: #475569;
+}
+
+/* ============================================
+   MAP STYLES
+   ============================================ */
+.map-bg {
+  background: linear-gradient(180deg, #87CEEB 0%, #4A90D9 30%, #2A9D8F 60%, #F5DEB3 85%, #DEB887 100%);
+  position: relative;
+}
+
+.city-pin {
+  transition: all 0.3s var(--game-transition);
+  cursor: pointer;
+}
+.city-pin:hover {
+  transform: scale(1.2) translateY(-4px);
+  z-index: 20;
+}
+
+/* ============================================
+   CONFETTI OVERLAY
+   ============================================ */
+.confetti-overlay {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+/* ============================================
+   MODAL BACKDROP
+   ============================================ */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+/* ============================================
+   DIFFICULTY TIER COLORS
+   ============================================ */
+.tier-easy { --tier-color: #22C55E; --tier-bg: rgba(34, 197, 94, 0.15); }
+.tier-medium { --tier-color: #3B82F6; --tier-bg: rgba(59, 130, 246, 0.15); }
+.tier-tough { --tier-color: #F59E0B; --tier-bg: rgba(245, 158, 11, 0.15); }
+.tier-hard { --tier-color: #EF4444; --tier-bg: rgba(239, 68, 68, 0.15); }
+.tier-hot { --tier-color: #EC4899; --tier-bg: rgba(236, 72, 153, 0.15); }
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+@media (max-width: 640px) {
+  .btn-game {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.8rem;
+  }
+  .level-node {
+    width: 2.75rem;
+    height: 2.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+
+/* Illustrated adventure-world art direction */
+.world-intro {
+  background-image: linear-gradient(90deg, rgba(12, 37, 57, .88), rgba(12, 37, 57, .55) 55%, rgba(20, 35, 43, .12)), url('/game-art/spain-sunset.png');
+  background-size: cover;
+  background-position: center 54%;
+  box-shadow: 0 8px 0 rgba(112, 58, 23, .22), 0 18px 45px rgba(8, 19, 32, .25);
+}
+.world-map-scene {
+  isolation: isolate;
+  background: #52b7d9;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,.45), 0 8px 0 rgba(107, 62, 22, .25);
+}
+.world-map-scene > img { z-index: -2; }
+.world-map-scene > div:first-of-type { z-index: -1; }
+.world-map-scene button { -webkit-tap-highlight-color: transparent; }
+.world-map-scene button:focus-visible { outline: 3px solid #fff4a3; outline-offset: 4px; }
